@@ -36,6 +36,10 @@ export default function Admin(props) {
     const [imageAsFile, setImageAsFile] = React.useState('');
     const [imageAsUrl, setImageAsUrl] = React.useState(null);
     const [body, setBody] = React.useState(RichTextEditor.createEmptyValue());
+    const [header,setHeader] = React.useState('');
+    const [error, setError] = React.useState(null);
+    const [id, setID] = React.useState()
+
     // const [editorState, setEditorState] = React.useState(() => EditorState.createEmpty(),);
     const [contentState, setContentState] = React.useState(() => null);
 
@@ -63,6 +67,76 @@ export default function Admin(props) {
     };
 
 
+
+
+
+    const refreshQueries = async() => {
+        setLoading(true)
+        db.collection('queries')
+            .where('responseID', '==', '0')
+            .onSnapshot((querySnapshot) => {
+                    let queries = [];
+                    querySnapshot.forEach(function (doc) {
+                        queries.push(doc.data())
+                    });
+                    setQueries(queries);
+                }
+            );
+        setLoading(false)
+        //TODO: sortbytimeStamp
+    };
+
+    const onChange = (value) => {
+        // let save = JSON.stringify(convertToRaw(contentState));
+
+        setContentState(value);
+        setBody(value);
+
+        // if (this.props.onChange) {
+        //     // Send the changes up to the parent component as an HTML string.
+        //     // This is here to demonstrate using `.toString()` but in a real app it
+        //     // would be better to avoid generating a string on each change.
+        //     this.props.onChange(
+        //         value.toString('html')
+        //     );
+        // }
+    };
+
+
+    const handleUploadModel = async(event) => {
+        //TODO: WE NEED TO DO A REQUIREMENTS CHECK
+        event.preventDefault();
+        try {
+
+            let bodyRaw =  body.toString('raw');
+            let uploadHeader = header;
+            let uploadID = id;
+            let img = imageAsUrl;
+            if (imageAsFile) {
+                await handleFireBaseUpload(event, imageAsFile);
+            }
+
+            let model = {
+                body: bodyRaw,
+                header: uploadHeader,
+                img: img,
+                responseID: uploadID,
+            };
+
+            await db.collection('models').doc(model.responseID).set(model)
+                .then(() => {
+                    console.log("Document successfully written!");
+                })
+                .catch((error) => {
+                    console.error("Error writing document: ", error);
+                });
+
+        } catch (error) {
+            console.log(error);
+            setError({error: error.message});
+        }
+    };
+
     const handleImageAsFile = async(e) => {
         console.log('upload')
         setIsLoadingImage(true);
@@ -70,8 +144,6 @@ export default function Admin(props) {
         await setImageAsFile(image);
         await handleFireBaseUpload(e, image)
         setIsLoadingImage(false);
-
-
     };
 
     const handleFireBaseUpload = async (e, imageAsFile) => {
@@ -100,42 +172,8 @@ export default function Admin(props) {
                         })
                 })
         }
-
-
     };
 
-
-    const refreshQueries = async() => {
-        setLoading(true)
-        db.collection('queries')
-            .where('responseID', '==', '0')
-            .onSnapshot((querySnapshot) => {
-                    let queries = [];
-                    querySnapshot.forEach(function (doc) {
-                        queries.push(doc.data())
-                    });
-                    setQueries(queries);
-                }
-            );
-        setLoading(false)
-        //TODO: sortbytimeStamp
-    };
-
-    const onChange = (value) => {
-        // let save = JSON.stringify(convertToRaw(contentState));
-        setContentState(value);
-        console.log(value.toString('raw'))
-        setBody(value);
-
-        // if (this.props.onChange) {
-        //     // Send the changes up to the parent component as an HTML string.
-        //     // This is here to demonstrate using `.toString()` but in a real app it
-        //     // would be better to avoid generating a string on each change.
-        //     this.props.onChange(
-        //         value.toString('html')
-        //     );
-        // }
-    };
 
 
     const handleClickOpen = () => {
@@ -169,19 +207,38 @@ export default function Admin(props) {
             </Grid>
             <Grid container justify = 'center' alignItems = 'center' direction='column'>
                 <Dialog maxWidth={'sm'} fullWidth={true} open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">Create a Tool</DialogTitle>
+                    <DialogTitle id="form-dialog-title">Create a Model </DialogTitle>
                     <DialogContent>
-                        <DialogContentText>
-                            Please include all required components
-                        </DialogContentText>
-                        <Divider/>
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Title"
-                            fullWidth
-                        />
+                        {/*<DialogContentText>*/}
+                        {/*    This is a sacred database, please treat it as such.*/}
+                        {/*</DialogContentText>*/}
+                        <Grid container direction='row' spacing={3}>
+                            <Grid item xs = {6} md = {6} lg = {6}>
+                                <TextField
+                                    autoFocus
+                                    margin="dense"
+                                    onChange={(event)=>setHeader(event.target.value)}
+                                    id="name"
+                                    label="Title"
+                                    fullWidth
+
+                                />
+                            </Grid>
+
+                            <Grid item xs = {6} md = {6} lg = {6}>
+
+                            <TextField
+                                    autoFocus
+                                    margin="dense"
+                                    onChange={(event)=>setID(event.target.value)}
+                                    id="id"
+                                    variant={'filled'}
+
+                                    label="ID"
+                                />
+
+                            </Grid>
+                        </Grid>
                         <Grid container direction ='column'>
 
                             <Grid item>
@@ -212,10 +269,10 @@ export default function Admin(props) {
 
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={handleClose} color="primary">
+                        <Button onClick={handleClose} color="default">
                             Cancel
                         </Button>
-                        <Button onClick={handleClose} color="primary">
+                        <Button onClick={handleUploadModel} color="primary">
                             Create
                         </Button>
                     </DialogActions>
