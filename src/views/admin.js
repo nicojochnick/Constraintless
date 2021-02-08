@@ -20,6 +20,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Divider from "@material-ui/core/Divider";
 import RichTextEditor from 'react-rte';
+import {Editor, EditorState,RichUtils} from 'draft-js';
+import {convertFromRaw, convertToRaw} from 'draft-js';
 
 
 
@@ -34,6 +36,8 @@ export default function Admin(props) {
     const [imageAsFile, setImageAsFile] = React.useState('');
     const [imageAsUrl, setImageAsUrl] = React.useState(null);
     const [body, setBody] = React.useState(RichTextEditor.createEmptyValue());
+    // const [editorState, setEditorState] = React.useState(() => EditorState.createEmpty(),);
+    const [contentState, setContentState] = React.useState(() => null);
 
     const handleLogout = async() => {
         firebase.auth().signOut().then(function() {
@@ -118,7 +122,11 @@ export default function Admin(props) {
     };
 
     const onChange = (value) => {
+        // let save = JSON.stringify(convertToRaw(contentState));
+        setContentState(value);
+        console.log(value.toString('raw'))
         setBody(value);
+
         // if (this.props.onChange) {
         //     // Send the changes up to the parent component as an HTML string.
         //     // This is here to demonstrate using `.toString()` but in a real app it
