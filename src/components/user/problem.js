@@ -18,7 +18,7 @@ function Problem(props) {
         setLabel(event.target.value)
     };
 
-    const handleQuery = async() => {
+    const handleQuery = async(label) => {
         const query = {
             query: label,
             timeStamp: new Date(),
@@ -34,6 +34,15 @@ function Problem(props) {
         });
         query.queryID = res.id;
         props.setQuery(query);
+    };
+
+    const sendResponse = (event) => {
+        let message = label
+        let code = event.keyCode || event.which;
+        if(code === 13 && message != '') { //13 is the enter keycode
+            setLabel('');
+            handleQuery(message)
+        }
     };
 
     return (
@@ -59,26 +68,28 @@ function Problem(props) {
                     />
                     <TextField
                         placeholder="type a problem..."
-                        multiline
+                        // multiline
                         onChange={(event)=>handleCreateQuery(event)}
+                        onKeyPress = {(e)=>sendResponse(e)}
                         defaultValue= {label}
                         fullWidth
+                        value = {label}
                         InputProps= {{className: classes.textField, disableUnderline: true}}
                         rowsMax={6}
                     />
                 </Box>
-                {isEditing && label !== ''
-                    ?
-                    <Button
-                        variant="outlined"
-                        onClick = {()=>handleQuery()}
-                        style={{borderRadius: 5,borderColor: 'white', margin:5, backgroundColor: 'black',}}>
-                        <p style = {{color: 'white', fontSize: 15, margin: 2, marginRight: 25, marginLeft: 25,fontWeight: 800}}>
-                            Search
-                        </p>
-                    </Button>
-                    : null
-                }
+                {/*{isEditing && label !== ''*/}
+                {/*    ?*/}
+                {/*    <Button*/}
+                {/*        variant="outlined"*/}
+                {/*        onClick = {()=>handleQuery()}*/}
+                {/*        style={{borderRadius: 5,borderColor: 'white', margin:5, backgroundColor: 'black',}}>*/}
+                {/*        <p style = {{color: 'white', fontSize: 15, margin: 2, marginRight: 25, marginLeft: 25,fontWeight: 800}}>*/}
+                {/*            Search*/}
+                {/*        </p>*/}
+                {/*    </Button>*/}
+                {/*    : null*/}
+                {/*}*/}
             </Grid>
         </div>
     );
@@ -91,7 +102,7 @@ const useStyles = makeStyles((theme) => ({
     },
     box: {
         color: "white",
-        width: 350
+        width: 400,
     },
     textField: {
         disableUnderline: true,

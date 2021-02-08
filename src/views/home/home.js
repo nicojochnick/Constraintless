@@ -37,7 +37,6 @@ function Home(props) {
     };
 
     const pullResponse = async(responseID) => {
-
         let resRef = await db.collection('models').doc(responseID);
         resRef.get().then((doc)=> {
                 if (doc.exists) {
@@ -48,14 +47,7 @@ function Home(props) {
                     console.log("No such document!");
                 }
             }
-
-
         )
-
-
-
-
-
     };
 
     useEffect(() => {
@@ -99,10 +91,10 @@ function Home(props) {
                 alignItems="center"
                 container
             >
-                <Grid item xs={6}>
+                <Grid item xs={12} md = {6} lg = {6}>
                     <Problem setQuery = {setQuery}/>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12} md = {6} lg = {6}>
                     <Solution
                         query = {props.query}
                         response = {response}
@@ -112,7 +104,6 @@ function Home(props) {
         </div>
     );
 };
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -124,7 +115,5 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.text.secondary,
     },
 }));
-
-
 
 export default Home;

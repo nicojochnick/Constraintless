@@ -27,10 +27,11 @@ function Solution(props) {
 
     return (
         <div className={classes.root}>
+            <Grid container justify={'flex-start'} alignItems = 'center'>
             {!props.response
                 ?
-                <p style = {{color: "white"}}>
-                    Make better decisions
+                <p style = {{color: "white", fontSize: 16, margin: 10}}>
+                    Make better decisions.
                 </p>
                 :
                 <Box>
@@ -39,6 +40,7 @@ function Solution(props) {
                     <p style={{color: "white", fontSize: 20}}> {props.response.body} </p>
                 </Box>
             }
+            </Grid>
         </div>
     );
 }
