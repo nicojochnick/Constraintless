@@ -16,10 +16,7 @@ function Solution(props) {
     const [query, setQuery] = React.useState(null);
     const [response,setResponse] = React.useState( null);
     const [img, setImg] = React.useState(null);
-    const [editorState, setEditorState] = React.useState( RichTextEditor.createEmptyValue())
     const [isEditing, setIsEditing] = React.useState(false);
-    const [eState, setEState] = React.useState(EditorState.createEmpty());
-
 
     const handleEditLabel = (event) => {
         if (!isEditing){setIsEditing(true)}
@@ -29,11 +26,11 @@ function Solution(props) {
 
     useEffect(() => {
 
-        if (props.response) {
-            let editorState = EditorState.createWithContent(convertFromRaw(JSON.parse(props.response.body)));
-            editorState = RichUtils.toggleInlineStyle(editorState, 'rgba(255, 0, 0, 1.0)',)
-            setEState(editorState)
-        }
+        // if (props.response) {
+        //     let editorState = EditorState.createWithContent(convertFromRaw(JSON.parse(props.response.body)));
+        //     editorState = RichUtils.toggleInlineStyle(editorState, 'rgba(255, 0, 0, 1.0)',)
+        //     setEState(editorState)
+        // }
 
 
     }, []);
@@ -53,13 +50,9 @@ function Solution(props) {
                 <Box>
                     <p style={{color: 'white', fontSize: 50, fontWeight: 800}}> {props.response.header} </p>
                     <img style={{maxHeight: 200}} src={props.response.img}/>
-
                         <div style={{color: 'white', margin: 10, fontSize: 15}}>
-                            <Editor editorState={eState} readOnly={true}/>
+                            <Editor editorState={ EditorState.createWithContent(convertFromRaw(JSON.parse(props.response.body))) } readOnly={true}/>
                         </div>
-
-
-
                 </Box>
             }
             </Grid>

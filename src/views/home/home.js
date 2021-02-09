@@ -11,6 +11,7 @@ import {BiDoorOpen} from "react-icons/bi";
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
 import {db} from "../../api/firebase";
+import {convertFromRaw, EditorState, RichUtils} from "draft-js";
 
 
 
@@ -21,7 +22,9 @@ function Home(props) {
     const [responseID, setResponseID] = React.useState(null)
     const [isEditing, setIsEditing] = React.useState(false);
     const [queryID, setQueryID] = React.useState(null);
-    const [error, setError] = React.useState(null)
+    const [error, setError] = React.useState(null);
+    const [parsedBody, setParsedBody] = React.useState(EditorState.createEmpty());
+    const [parsed, setParsed] = React.useState(false)
 
     const classes = useStyles();
 
@@ -38,12 +41,14 @@ function Home(props) {
         }
     };
 
+
     const pullResponse = async(responseID) => {
         let resRef = await db.collection('models').doc(responseID);
         resRef.get().then((doc)=> {
                 if (doc.exists) {
-                    console.log("Document data:", doc.data());
-                    setResponse(doc.data())
+                    let res = doc.data()
+                    console.log("Document data:", res);
+                    setResponse(res)
                 } else {
                     // doc.data() will be undefined in this case
                     console.log("No such document!");
@@ -64,7 +69,6 @@ function Home(props) {
                     err => {
                         setError(err)
                     })
-
             // returning the unsubscribe function will ensure that
             // we unsubscribe from document changes when our id
             // changes to a different value.
@@ -97,10 +101,12 @@ function Home(props) {
                     <Problem setQuery = {setQuery}/>
                 </Grid>
                 <Grid item xs={12} md = {6} lg = {6}>
-                    <Solution
+                    < Solution
                         query = {props.query}
+                        parsedBody = {parsedBody}
                         response = {response}
                     />
+
                 </Grid>
             </Grid>
         </div>

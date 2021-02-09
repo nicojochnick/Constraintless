@@ -25,7 +25,7 @@ function Problem(props) {
             responseID: '0'
         };
         const res = await db.collection('queries').add(query);
-        db.collection('queries').doc(res.id).update({
+        await db.collection('queries').doc(res.id).update({
             queryID: res.id
         }).then(function() {
             console.log("RESPONSE ID UPDATE SUCCESS");
