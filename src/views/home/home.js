@@ -26,13 +26,15 @@ function Home(props) {
     const classes = useStyles();
 
     const setQuery = (query) => {
-        console.log('Setting Query and ID:', query, query.queryID);
-        setstateQuery(query);
-        setQueryID(query.queryID);
-        if (query.responseID !== '0'){
-            console.log('****setting responseID: ', query.responseID);
-            setResponseID(query.responseID);
-            pullResponse(query.responseID)
+        if (query) {
+            console.log('Setting Query and ID:', query, query.queryID);
+            setstateQuery(query);
+            setQueryID(query.queryID);
+            if (query.responseID !== '0') {
+                console.log('****setting responseID: ', query.responseID);
+                setResponseID(query.responseID);
+                pullResponse(query.responseID)
+            }
         }
     };
 
@@ -51,7 +53,7 @@ function Home(props) {
     };
 
     useEffect(() => {
-        console.log('triggered updates')
+        console.log('triggered updates with the queryID:', queryID)
         if(queryID) {
             const unsubscribe = db.collection('queries').doc(queryID)
                 .onSnapshot(doc => {

@@ -68,8 +68,6 @@ export default function Admin(props) {
 
 
 
-
-
     const refreshQueries = async() => {
         setLoading(true)
         db.collection('queries')
@@ -86,20 +84,11 @@ export default function Admin(props) {
         //TODO: sortbytimeStamp
     };
 
-    const onChange = (value) => {
-        // let save = JSON.stringify(convertToRaw(contentState));
 
+
+    const onChange = (value) => {
         setContentState(value);
         setBody(value);
-
-        // if (this.props.onChange) {
-        //     // Send the changes up to the parent component as an HTML string.
-        //     // This is here to demonstrate using `.toString()` but in a real app it
-        //     // would be better to avoid generating a string on each change.
-        //     this.props.onChange(
-        //         value.toString('html')
-        //     );
-        // }
     };
 
 

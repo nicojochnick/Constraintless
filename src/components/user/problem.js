@@ -40,7 +40,7 @@ function Problem(props) {
         let message = label
         let code = event.keyCode || event.which;
         if(code === 13 && message != '') { //13 is the enter keycode
-            setLabel('');
+            // setLabel('');
             handleQuery(message)
         }
     };

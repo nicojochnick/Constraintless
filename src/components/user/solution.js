@@ -5,23 +5,39 @@ import TextField from "@material-ui/core/TextField/TextField";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from '@material-ui/core';
 import {db} from "../../api/firebase";
+import RichTextEditor from 'react-rte';
+import {convertFromRaw, RichUtils, Editor, EditorState} from "draft-js";
+
+
 
 function Solution(props) {
     const classes = useStyles();
     const [label, setLabel] = React.useState('');
     const [query, setQuery] = React.useState(null);
     const [response,setResponse] = React.useState( null);
-
+    const [img, setImg] = React.useState(null);
+    const [editorState, setEditorState] = React.useState( RichTextEditor.createEmptyValue())
     const [isEditing, setIsEditing] = React.useState(false);
+    const [eState, setEState] = React.useState(EditorState.createEmpty());
+
 
     const handleEditLabel = (event) => {
         if (!isEditing){setIsEditing(true)}
         setLabel(event.target.value)
     };
 
+
     useEffect(() => {
 
+        if (props.response) {
+            let editorState = EditorState.createWithContent(convertFromRaw(JSON.parse(props.response.body)));
+            editorState = RichUtils.toggleInlineStyle(editorState, 'rgba(255, 0, 0, 1.0)',)
+            setEState(editorState)
+        }
+
+
     }, []);
+
 
     let currentQuery = query ? query : props.query;
 
@@ -37,7 +53,13 @@ function Solution(props) {
                 <Box>
                     <p style={{color: 'white', fontSize: 50, fontWeight: 800}}> {props.response.header} </p>
                     <img style={{maxHeight: 200}} src={props.response.img}/>
-                    <p style={{color: "white", fontSize: 20}}> {props.response.body} </p>
+
+                        <div style={{color: 'white', margin: 10, fontSize: 15}}>
+                            <Editor editorState={eState} readOnly={true}/>
+                        </div>
+
+
+
                 </Box>
             }
             </Grid>
