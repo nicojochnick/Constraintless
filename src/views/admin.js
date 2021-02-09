@@ -180,7 +180,6 @@ export default function Admin(props) {
     return (
         <div>
             <Grid justify='space-between' alignItems={'space-between'} container direction='row'>
-
                 <Grid item >
                     <img style = {{height: 60, margin: 10}} src={constraintless}/>
                 </Grid>
@@ -194,7 +193,7 @@ export default function Admin(props) {
                     </IconButton>
                 </Grid>
             </Grid>
-            <Grid container justify = 'center' alignItems = 'center' direction='column'>
+            <Grid container justify = 'flex-start' alignItems = 'center' direction='column'>
                 <Dialog maxWidth={'sm'} fullWidth={true} open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Create a Model </DialogTitle>
                     <DialogContent>
@@ -229,9 +228,7 @@ export default function Admin(props) {
                             </Grid>
                         </Grid>
                         <Grid container direction ='column'>
-
                             <Grid item>
-
                                 {imageAsUrl
 
                                     ? < img  style  = {{height: 200, marginTop: 20, marginBottom: 20}} src = {imageAsUrl.imgUrl} />
@@ -285,6 +282,7 @@ export default function Admin(props) {
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
+        backgroundColor: 'black'
     },
 
     box: {

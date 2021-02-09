@@ -98,14 +98,14 @@ function Home(props) {
                 container
                 style = {{minHeight: 600}}
             >
-                <Grid item xs={12} sm = {6} md = {6} lg = {6}>
+                <Grid item xs={12} sm = {6} md = {5} lg = {5}>
                     <Problem setQuery = {setQuery}/>
                 </Grid>
-                <Grid spacing={0} item xs={12} sm = {6} md = {6} lg = {6}>
+                <Grid spacing={0} item xs={12} sm = {6} md = {7} lg = {7}>
 
                     <Box style = {{maxHeight: 700, backgroundColor:'black'}} className={classes.inner_box}>
                     < Solution
-                        query = {props.query}
+                        query = {query}
                         parsedBody = {parsedBody}
                         response = {response}
                     />

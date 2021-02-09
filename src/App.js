@@ -44,7 +44,7 @@ export default class App extends Component {
                 <span className="sr-only">Loading...</span>
             </div>
         ) : (
-            <div style={{backgroundColor: '#000000', height: '100vh',}} >
+            <div style={{backgroundColor: '#000000', minHeight: '100vh',}} >
                 <Router>
                     <Switch>
                         <Route exact path="/" component={home}/>

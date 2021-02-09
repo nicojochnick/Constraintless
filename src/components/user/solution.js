@@ -43,9 +43,12 @@ function Solution(props) {
             <Grid  container justify={'flex-start'} alignItems = 'center'>
             {!props.response
                 ?
-                <p style = {{color: "white", fontSize: 16, margin: 10}}>
-                    Make better decisions.
-                </p>
+                <div>
+                {props.query
+                        ? <img src = {'https://media.giphy.com/media/KfO1WOZN8xUuGgTFWq/giphy.gif'} style={{height: 200, margin:200}}/>
+                        : <p style={{color: "white", fontSize: 16, margin: 10}}>Better decisions, on command.</p>
+                    }
+                </div>
                 :
                 <Box style = {{margin: 50}}>
                     <p style={{color: 'white', fontSize: 50, fontWeight: 800}}> {props.response.header} </p>
