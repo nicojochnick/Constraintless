@@ -79,7 +79,8 @@ function Home(props) {
     );
 
     return (
-        <div style = {{backgroundColor:backgroundColor}}  className={classes.root}>
+        <div className={classes.root}>
+            <Grid container>
             <Grid justify='space-between' alignItems='space-between' container direction='row' >
                 <Grid item >
                 <img style = {{height: 50, margin: 10}} src={constraintless}/>
@@ -91,23 +92,26 @@ function Home(props) {
                 </Link>
             </Grid>
             <Grid
-                style = {{height: '75vh'}}
                 direction="row"
                 justify="center"
                 alignItems="center"
                 container
+                style = {{minHeight: 600}}
             >
-                <Grid item xs={12} md = {6} lg = {6}>
+                <Grid item xs={12} sm = {6} md = {6} lg = {6}>
                     <Problem setQuery = {setQuery}/>
                 </Grid>
-                <Grid item xs={12} md = {6} lg = {6}>
+                <Grid spacing={0} item xs={12} sm = {6} md = {6} lg = {6}>
+
+                    <Box style = {{maxHeight: 700, backgroundColor:'black'}} className={classes.inner_box}>
                     < Solution
                         query = {props.query}
                         parsedBody = {parsedBody}
                         response = {response}
                     />
-
+                        </Box>
                 </Grid>
+            </Grid>
             </Grid>
         </div>
     );
@@ -116,12 +120,40 @@ function Home(props) {
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
+        backgroundColor:'black',
+        overflowX: 'hidden',
     },
     paper: {
         padding: theme.spacing(0),
         textAlign: 'center',
         color: theme.palette.text.secondary,
     },
+    box:{
+        flexGrow: 1,
+        padding: 0,
+        display: 'start',
+        overflow: 'auto',
+        flexDirection: 'column',
+        position: 'relative',
+        // overflowY: 'hidden',
+        overflowX: 'hidden',
+        // margin: 10,
+        // marginBottom: 20,
+        // backgroundColor: 'white',
+    },
+
+
+    inner_box:{
+        flexGrow: 1,
+        padding: 0,
+        display: 'start',
+        overflowY: 'scroll',
+        overflowX: 'hidden',
+        flexDirection: 'column',
+        backgroundColor: 'white',
+        marginRight: -15
+    },
+
 }));
 
 export default Home;

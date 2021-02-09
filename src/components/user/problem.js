@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box';
 import { BiQuestionMark, BiPlus, BiSearch} from "react-icons/bi"
 import TextField from "@material-ui/core/TextField/TextField";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, fade } from '@material-ui/core';
 import Button from "@material-ui/core/Button";
 import {db} from "../../api/firebase";
 import nextId from "react-id-generator";
@@ -49,11 +49,11 @@ function Problem(props) {
         <div className={classes.root}>
             <Grid direction={'column'}
                   alignItems = 'center'
-                  justify = 'center'
+                  justify = {'center'}
                   container style = {{backgroundColor: "black"}}
             >
                 <Box
-                    className = {classes.box}
+                    className={classes.search2}
                     style = {{backgroundColor: 'black', padding: 10, margin: 10}}
                     border = {2}
                     borderRadius = {20}
@@ -102,12 +102,28 @@ const useStyles = makeStyles((theme) => ({
     },
     box: {
         color: "white",
-        width: 400,
     },
     textField: {
         disableUnderline: true,
         color: 'white',
-    }
+    },
+
+    search2: {
+        color: "white",
+        position: 'relative',
+        maxWidth: 450,
+        // borderRadius: theme.shape.borderRadius,
+        backgroundColor: fade("#A8ADBC", 0.15),
+        '&:hover': {
+            backgroundColor: fade("#A8ADBC", 0.25),
+        },
+        marginRight: theme.spacing(2),
+        marginLeft: 0,
+        width: '75%',
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: theme.spacing(3),
+        },
+    },
 }));
 
 export default Problem;

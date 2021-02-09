@@ -100,7 +100,7 @@ export default function Admin(props) {
             let bodyRaw =  body.toString('raw');
             let uploadHeader = header;
             let uploadID = id;
-            let img = imageAsUrl;
+            let img = imageAsUrl.imgUrl;
             if (imageAsFile) {
                 await handleFireBaseUpload(event, imageAsFile);
             }

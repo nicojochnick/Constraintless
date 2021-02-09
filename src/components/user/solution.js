@@ -40,16 +40,16 @@ function Solution(props) {
 
     return (
         <div className={classes.root}>
-            <Grid container justify={'flex-start'} alignItems = 'center'>
+            <Grid  container justify={'flex-start'} alignItems = 'center'>
             {!props.response
                 ?
                 <p style = {{color: "white", fontSize: 16, margin: 10}}>
                     Make better decisions.
                 </p>
                 :
-                <Box>
+                <Box style = {{margin: 50}}>
                     <p style={{color: 'white', fontSize: 50, fontWeight: 800}}> {props.response.header} </p>
-                    <img style={{maxHeight: 200}} src={props.response.img}/>
+                    <img style={{maxHeight: 250}} src={props.response.img}/>
                         <div style={{color: 'white', margin: 10, fontSize: 15}}>
                             <Editor editorState={ EditorState.createWithContent(convertFromRaw(JSON.parse(props.response.body))) } readOnly={true}/>
                         </div>
