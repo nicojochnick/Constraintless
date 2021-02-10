@@ -36,6 +36,9 @@ function Home(props) {
             console.log('Setting Query and ID:', query, query.queryID);
             setstateQuery(query);
             setQueryID(query.queryID);
+            setResponse(null);
+            setResponseID(null);
+            setIsReturned(false);
             if (query.responseID !== '0') {
                 console.log('****setting responseID: ', query.responseID);
                 setResponseID(query.responseID);

@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ad4b1a5-1382-4995-bf56-c2f062a8a410" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/models/model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/user/problem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/problem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user/solution.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/solution.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/home/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/home.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -25,12 +20,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/home/home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-534">
-              <caret line="107" column="47" selection-start-line="107" selection-start-column="47" selection-end-line="107" selection-end-column="47" />
+            <state relative-caret-position="-178">
+              <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
-                <marker date="1612968730552" expanded="true" signature="3748:4621" ph="..." />
-                <marker date="1612968730552" expanded="true" signature="5357:5378" ph="..." />
+                <marker date="1612971177300" expanded="true" signature="3846:4719" ph="..." />
+                <marker date="1612971177300" expanded="true" signature="5455:5476" ph="..." />
               </folding>
             </state>
           </provider>
@@ -39,7 +34,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/user/solution.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-839">
+            <state relative-caret-position="-609">
               <caret line="11" selection-start-line="11" selection-end-line="11" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
@@ -85,8 +80,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/user/problem.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="123" column="94" selection-start-line="123" selection-start-column="94" selection-end-line="123" selection-end-column="94" />
+            <state relative-caret-position="184">
+              <caret line="55" column="48" lean-forward="true" selection-start-line="55" selection-start-column="48" selection-end-line="55" selection-end-column="48" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -157,8 +152,8 @@
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/src/components/models/models.js" />
         <option value="$PROJECT_DIR$/src/components/models/model.js" />
-        <option value="$PROJECT_DIR$/src/views/home/home.js" />
         <option value="$PROJECT_DIR$/src/components/user/solution.js" />
+        <option value="$PROJECT_DIR$/src/views/home/home.js" />
         <option value="$PROJECT_DIR$/src/components/user/problem.js" />
       </list>
     </option>
@@ -300,24 +295,23 @@
       <updated>1612628454381</updated>
       <workItem from="1612628456065" duration="38238000" />
       <workItem from="1612755571112" duration="4000" />
-      <workItem from="1612790112306" duration="39836000" />
+      <workItem from="1612790112306" duration="42318000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78078000" />
+    <option name="totallyTimeSpent" value="80560000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1517" height="875" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="npm" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.15852843" />
+      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.15852843" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="GraphQL" order="0" />
       <window_info anchor="bottom" id="RNConsole" order="1" />
-      <window_info anchor="bottom" id="Terminal" order="2" visible="true" weight="0.14888011" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="2" visible="true" weight="0.6666667" />
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Docker" order="5" show_stripe_button="false" />
@@ -486,19 +480,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/home/home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-534">
-          <caret line="107" column="47" selection-start-line="107" selection-start-column="47" selection-end-line="107" selection-end-column="47" />
+        <state relative-caret-position="-178">
+          <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
-            <marker date="1612968730552" expanded="true" signature="3748:4621" ph="..." />
-            <marker date="1612968730552" expanded="true" signature="5357:5378" ph="..." />
+            <marker date="1612971177300" expanded="true" signature="3846:4719" ph="..." />
+            <marker date="1612971177300" expanded="true" signature="5455:5476" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/user/solution.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-839">
+        <state relative-caret-position="-609">
           <caret line="11" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
@@ -508,8 +502,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/user/problem.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="123" column="94" selection-start-line="123" selection-start-column="94" selection-end-line="123" selection-end-column="94" />
+        <state relative-caret-position="184">
+          <caret line="55" column="48" lean-forward="true" selection-start-line="55" selection-start-column="48" selection-end-line="55" selection-end-column="48" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>

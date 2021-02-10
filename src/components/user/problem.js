@@ -56,7 +56,10 @@ function Problem(props) {
         let code = event.keyCode || event.which;
         if(code === 13 && message != '') { //13 is the enter keycode
             // setLabel('');
-            handleQuery(message)
+            handleQuery(message);
+            if (color != 'white'){
+                setColor('white')
+            }
         }
     };
 
@@ -76,7 +79,8 @@ function Problem(props) {
             <Grid direction={'column'}
                   alignItems = 'center'
                   justify = {'center'}
-                  container style = {{backgroundColor: "black"}}
+                  container
+                  style = {{backgroundColor: "black"}}
             >
                 <Box
                     className={classes.search2}
@@ -111,8 +115,7 @@ function Problem(props) {
 
                     ?<Box
                         className={classes.rteBox}
-
-                        style={{backgroundColor: 'white', padding: 0, margin: 10,maxWidth: 475,}}
+                        style={{backgroundColor: 'white', padding: 0, margin: 10,}}
                         alignItems="flex-start"
                         justify='flex-start'
                         display="flex"
@@ -121,26 +124,16 @@ function Problem(props) {
                         borderRadius = {20}
                         borderColor = { '#655BFF'}
                     >
-                        <p style = {{color: 'black', fontWeight: 800, fontSize: 15, margin: 10}}> White Board </p>
+                        <p style = {{color: '#4E4D5A', fontWeight: 800, fontSize: 15, margin: 10}}> White Board </p>
                         <Divider className={classes.divider}/>
                         <RichTextEditor
                             value={body}
                             className = {classes.rte}
                             onChange={onChange}
                         />
-
-
                     </Box>
                     :null
-
-
                 }
-
-
-
-
-
-
             </Grid>
         </div>
     );
@@ -161,7 +154,8 @@ const useStyles = makeStyles((theme) => ({
 
     rte:{
         minHeight: 300,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        fontFamily: "inherit",
         // borderRadius: 20,
         // borderWidth: 2,
         // borderColor: '#655BFF',
@@ -169,7 +163,8 @@ const useStyles = makeStyles((theme) => ({
     },
 
     rteBox: {
-        overflow: 'hidden'
+        overflow: 'hidden',
+        width: '80%',
     },
 
     search2: {
