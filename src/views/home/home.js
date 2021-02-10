@@ -12,6 +12,8 @@ import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
 import {db} from "../../api/firebase";
 import {convertFromRaw, EditorState, RichUtils} from "draft-js";
+import Divider from '@material-ui/core/Divider';
+
 
 
 
@@ -24,7 +26,8 @@ function Home(props) {
     const [queryID, setQueryID] = React.useState(null);
     const [error, setError] = React.useState(null);
     const [parsedBody, setParsedBody] = React.useState(EditorState.createEmpty());
-    const [parsed, setParsed] = React.useState(false)
+    const [parsed, setParsed] = React.useState(false);
+    const [isReturned, setIsReturned] = React.useState(false);
 
     const classes = useStyles();
 
@@ -48,7 +51,8 @@ function Home(props) {
                 if (doc.exists) {
                     let res = doc.data()
                     console.log("Document data:", res);
-                    setResponse(res)
+                    setResponse(res);
+                    setIsReturned(true);
                 } else {
                     // doc.data() will be undefined in this case
                     console.log("No such document!");
@@ -99,7 +103,10 @@ function Home(props) {
                 style = {{minHeight: 600}}
             >
                 <Grid item xs={12} sm = {6} md = {5} lg = {5}>
-                    <Problem setQuery = {setQuery}/>
+                    <Problem
+                        setQuery = {setQuery}
+                        isReturned = {isReturned}
+                    />
                 </Grid>
                 <Grid spacing={0} item xs={12} sm = {6} md = {7} lg = {7}>
 

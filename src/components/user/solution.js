@@ -6,6 +6,8 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from '@material-ui/core';
 import {db} from "../../api/firebase";
 import RichTextEditor from 'react-rte';
+import Model from "../models/model"
+import Divider from "@material-ui/core/Divider"
 import {convertFromRaw, RichUtils, Editor, EditorState} from "draft-js";
 
 
@@ -17,6 +19,7 @@ function Solution(props) {
     const [response,setResponse] = React.useState( null);
     const [img, setImg] = React.useState(null);
     const [isEditing, setIsEditing] = React.useState(false);
+    const [models, setModels] = React.useState([]);
 
     const handleEditLabel = (event) => {
         if (!isEditing){setIsEditing(true)}
@@ -26,12 +29,14 @@ function Solution(props) {
 
     useEffect(() => {
 
-        // if (props.response) {
-        //     let editorState = EditorState.createWithContent(convertFromRaw(JSON.parse(props.response.body)));
-        //     editorState = RichUtils.toggleInlineStyle(editorState, 'rgba(255, 0, 0, 1.0)',)
-        //     setEState(editorState)
-        // }
-
+        db.collection("models").where('responseID', "!=", "0")
+            .onSnapshot((querySnapshot) => {
+            let models = [];
+            querySnapshot.forEach((doc) => {
+                models.push(doc.data());
+            });
+            setModels(models)
+        });
 
     }, []);
 
@@ -44,19 +49,26 @@ function Solution(props) {
             {!props.response
                 ?
                 <div>
-                {props.query
-                        ? <img src = {'https://media.giphy.com/media/KfO1WOZN8xUuGgTFWq/giphy.gif'} style={{height: 200, margin:200}}/>
-                        : <p style={{color: "white", fontSize: 16, margin: 10}}>Better decisions, on command.</p>
+                    {props.query
+
+                        ? <img
+                            src={'https://media.giphy.com/media/KfO1WOZN8xUuGgTFWq/giphy.gif'}
+                            style={{height: 200, margin: 200}}/>
+
+                        :
+                        <div>
+                            <p style = {{color: "white"}}> Make better decisions </p>
+
+                            {/*{models.map((item) => <Model header = {item.header} body = {item.body} img = {item.img} />*/}
+                        )}
+                        </div>
                     }
                 </div>
                 :
-                <Box style = {{margin: 50}}>
-                    <p style={{color: 'white', fontSize: 50, fontWeight: 800}}> {props.response.header} </p>
-                    <img style={{maxHeight: 250}} src={props.response.img}/>
-                        <div style={{color: 'white', margin: 10, fontSize: 15}}>
-                            <Editor editorState={ EditorState.createWithContent(convertFromRaw(JSON.parse(props.response.body))) } readOnly={true}/>
-                        </div>
-                </Box>
+                <div>
+
+                <Model header = {props.response.header} body = {props.response.body} img = {props.response.img} />
+                </div>
             }
             </Grid>
         </div>

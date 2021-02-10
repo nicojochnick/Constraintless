@@ -1,17 +1,32 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Box from '@material-ui/core/Box';
-import { BiQuestionMark, BiPlus, BiSearch} from "react-icons/bi"
+import { BiQuestionMark, BiPlus, BiSearch,BiLoaderCircle, BiDisc} from "react-icons/bi"
 import TextField from "@material-ui/core/TextField/TextField";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles, fade } from '@material-ui/core';
 import Button from "@material-ui/core/Button";
 import {db} from "../../api/firebase";
 import nextId from "react-id-generator";
+import PuffLoader from "react-spinners/PuffLoader";
+import { css } from "@emotion/core";
+import RichTextEditor from "react-rte";
+import Divider from "@material-ui/core/Divider";
+
+
+const override = css`
+  display: block;
+  margin:  10;
+  border-color: red;
+`;
 
 function Problem(props) {
     const classes = useStyles();
     const [label, setLabel] = React.useState('');
     const [isEditing, setIsEditing] = React.useState(false);
+    let [loading, setLoading] = React.useState(true);
+    let [color, setColor] = React.useState("white");
+    const [body, setBody] = React.useState(RichTextEditor.createEmptyValue());
+
 
     const handleCreateQuery = (event) => {
         if (!isEditing){setIsEditing(true)}
@@ -45,6 +60,17 @@ function Problem(props) {
         }
     };
 
+    const onChange = (value) => {
+        // setContentState(value);
+        setBody(value);
+    };
+
+    useEffect(() => {
+
+        if (props.isReturned){setColor('#655BFF')}
+
+    }, []);
+
     return (
         <div className={classes.root}>
             <Grid direction={'column'}
@@ -54,20 +80,22 @@ function Problem(props) {
             >
                 <Box
                     className={classes.search2}
-                    style = {{backgroundColor: 'black', padding: 10, margin: 10}}
+                    style = {{backgroundColor: 'black', padding: 10, margin: 10,}}
                     border = {2}
+                    borderColor = {color}
                     borderRadius = {20}
                     alignItems="flex-start"
                     justify = 'flex-start'
                     display="flex"
                     flexDirection="row"
                 >
-                    <BiSearch
+                    <BiDisc
                         size = {25}
-                        style = {{color: 'white', margin: 5}}
+                        style = {{color: color, margin: 5}}
                     />
+                    {/*<PuffLoader color={color} loading={loading} css={override} size={15} style = {{margin: 0}} />*/}
                     <TextField
-                        placeholder="type a problem..."
+                        placeholder="What can I help with?"
                         // multiline
                         onChange={(event)=>handleCreateQuery(event)}
                         onKeyPress = {(e)=>sendResponse(e)}
@@ -78,18 +106,41 @@ function Problem(props) {
                         rowsMax={6}
                     />
                 </Box>
-                {/*{isEditing && label !== ''*/}
-                {/*    ?*/}
-                {/*    <Button*/}
-                {/*        variant="outlined"*/}
-                {/*        onClick = {()=>handleQuery()}*/}
-                {/*        style={{borderRadius: 5,borderColor: 'white', margin:5, backgroundColor: 'black',}}>*/}
-                {/*        <p style = {{color: 'white', fontSize: 15, margin: 2, marginRight: 25, marginLeft: 25,fontWeight: 800}}>*/}
-                {/*            Search*/}
-                {/*        </p>*/}
-                {/*    </Button>*/}
-                {/*    : null*/}
-                {/*}*/}
+
+                {props.isReturned
+
+                    ?<Box
+                        className={classes.rteBox}
+
+                        style={{backgroundColor: 'white', padding: 0, margin: 10,maxWidth: 475,}}
+                        alignItems="flex-start"
+                        justify='flex-start'
+                        display="flex"
+                        flexDirection="column"
+                        border = {2}
+                        borderRadius = {20}
+                        borderColor = { '#655BFF'}
+                    >
+                        <p style = {{color: 'black', fontWeight: 800, fontSize: 15, margin: 10}}> White Board </p>
+                        <Divider className={classes.divider}/>
+                        <RichTextEditor
+                            value={body}
+                            className = {classes.rte}
+                            onChange={onChange}
+                        />
+
+
+                    </Box>
+                    :null
+
+
+                }
+
+
+
+
+
+
             </Grid>
         </div>
     );
@@ -108,6 +159,19 @@ const useStyles = makeStyles((theme) => ({
         color: 'white',
     },
 
+    rte:{
+        minHeight: 300,
+        overflow: 'hidden'
+        // borderRadius: 20,
+        // borderWidth: 2,
+        // borderColor: '#655BFF',
+
+    },
+
+    rteBox: {
+        overflow: 'hidden'
+    },
+
     search2: {
         color: "white",
         position: 'relative',
@@ -123,7 +187,27 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('sm')]: {
             marginLeft: theme.spacing(3),
         },
+
+    },
+
+    divider: {
+        // Theme Color, or use css color in quote
+        background: 'white',
     },
 }));
 
 export default Problem;
+
+
+{/*{isEditing && label !== ''*/}
+{/*    ?*/}
+{/*    <Button*/}
+{/*        variant="outlined"*/}
+{/*        onClick = {()=>handleQuery()}*/}
+{/*        style={{borderRadius: 5,borderColor: 'white', margin:5, backgroundColor: 'black',}}>*/}
+{/*        <p style = {{color: 'white', fontSize: 15, margin: 2, marginRight: 25, marginLeft: 25,fontWeight: 800}}>*/}
+{/*            Search*/}
+{/*        </p>*/}
+{/*    </Button>*/}
+{/*    : null*/}
+{/*}*/}
