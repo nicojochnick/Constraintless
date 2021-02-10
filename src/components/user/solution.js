@@ -41,6 +41,7 @@ function Solution(props) {
     }, []);
 
 
+
     let currentQuery = query ? query : props.query;
 
     return (
@@ -52,13 +53,13 @@ function Solution(props) {
                     {props.query
 
                         ? <img
-                            src={'https://media.giphy.com/media/KfO1WOZN8xUuGgTFWq/giphy.gif'}
-                            style={{height: 200, margin: 200}}/>
+                            src={'https://media.giphy.com/media/xTiTnfZKxrPxYt9iRq/giphy.gif'}/>
 
                         :
                         <div>
-                            <p style = {{color: "white"}}> Make better decisions </p>
-
+                            {/*<p style = {{color: "white",}}> Make better decisions with A.I.</p>*/}
+                            <img
+                                src={'https://media.giphy.com/media/xTiTnHN9JLODvS1fr2/giphy.gif'}/>
                             {/*{models.map((item) => <Model header = {item.header} body = {item.body} img = {item.img} />*/}
                         )}
                         </div>

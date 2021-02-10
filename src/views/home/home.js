@@ -100,16 +100,18 @@ function Home(props) {
             </Grid>
             <Grid
                 direction="row"
-                justify="center"
-                alignItems="center"
+                justify="flex-start"
+                alignItems='center'
                 container
                 style = {{minHeight: 600}}
             >
-                <Grid item xs={12} sm = {6} md = {5} lg = {5}>
+                <Grid item xs={12} sm = {6} md = {5} lg = {5} >
                     <Problem
                         setQuery = {setQuery}
                         isReturned = {isReturned}
                     />
+                    <p style = {{color:'#C8C8C8', marginLeft: 70}}> Trending: #startups, #systemsthinking, #investing </p>
+
                 </Grid>
                 <Grid spacing={0} item xs={12} sm = {6} md = {7} lg = {7}>
 

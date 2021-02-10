@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import Box from '@material-ui/core/Box';
-import { BiQuestionMark, BiPlus, BiSearch,BiLoaderCircle, BiDisc} from "react-icons/bi"
+import { BiQuestionMark, BiPlus, BiSearch,BiLoaderCircle, BiDisc,BiArrowToBottom} from "react-icons/bi"
 import TextField from "@material-ui/core/TextField/TextField";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles, fade } from '@material-ui/core';
@@ -11,6 +11,11 @@ import PuffLoader from "react-spinners/PuffLoader";
 import { css } from "@emotion/core";
 import RichTextEditor from "react-rte";
 import Divider from "@material-ui/core/Divider";
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 const override = css`
@@ -21,6 +26,7 @@ const override = css`
 
 function Problem(props) {
     const classes = useStyles();
+    const [open, setOpen] = React.useState(false)
     const [label, setLabel] = React.useState('');
     const [isEditing, setIsEditing] = React.useState(false);
     let [loading, setLoading] = React.useState(true);
@@ -68,6 +74,14 @@ function Problem(props) {
         setBody(value);
     };
 
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     useEffect(() => {
 
         if (props.isReturned){setColor('#655BFF')}
@@ -94,10 +108,10 @@ function Problem(props) {
                     flexDirection="row"
                 >
                     <BiDisc
-                        size = {25}
-                        style = {{color: color, margin: 5}}
-                    />
-                    {/*<PuffLoader color={color} loading={loading} css={override} size={15} style = {{margin: 0}} />*/}
+                        size={25}
+                        style={{color: color, margin: 5}}/>
+
+
                     <TextField
                         placeholder="What can I help with?"
                         // multiline
@@ -113,14 +127,16 @@ function Problem(props) {
 
                 {props.isReturned
 
-                    ?<Box
+                    ?
+
+                    <Box
                         className={classes.rteBox}
                         style={{backgroundColor: 'white', padding: 0, margin: 10,}}
                         alignItems="flex-start"
                         justify='flex-start'
                         display="flex"
                         flexDirection="column"
-                        border = {2}
+                        border = {3}
                         borderRadius = {20}
                         borderColor = { '#655BFF'}
                     >
@@ -131,9 +147,46 @@ function Problem(props) {
                             className = {classes.rte}
                             onChange={onChange}
                         />
+                        <Button
+                            style = {{margin: 0, backgroundColor:'white', borderRadius: 0}}
+                            variant="contained"
+                            fullWidth
+                            onClick={()=>handleClickOpen()}
+                            className={classes.button}
+                            startIcon={<BiArrowToBottom style = {{color:'#171717'}} />}
+                        >
+                            <p style = {{color:'#171717',fontWeight: 800, margin: 6}}>
+                            SAVE
+                            </p>
+                        </Button>
                     </Box>
+
+
+
                     :null
                 }
+
+                <Dialog maxWidth={'sm'} fullWidth={true} open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title">Subscribe to Save </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            Saving is a premium feature. Sign up to save your notes.
+                        </DialogContentText>
+                        <Grid container direction='column' spacing={0}>
+
+
+                        </Grid>
+
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="default">
+                            Cancel
+                        </Button>
+                        <Button onClick={handleClose} color="default">
+                            Subscribe
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </Grid>
         </div>
     );
