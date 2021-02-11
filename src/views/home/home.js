@@ -13,8 +13,7 @@ import { Link } from 'react-router-dom';
 import {db} from "../../api/firebase";
 import {convertFromRaw, EditorState, RichUtils} from "draft-js";
 import Divider from '@material-ui/core/Divider';
-
-
+import Typewriter from 'typewriter-effect';
 
 
 function Home(props) {
@@ -90,7 +89,10 @@ function Home(props) {
             <Grid container>
             <Grid justify='space-between' alignItems='space-between' container direction='row' >
                 <Grid item >
-                <img style = {{height: 50, margin: 10}} src={constraintless}/>
+                    <Link to="/">
+
+                        <img style = {{height: 50, margin: 10}} src={constraintless}/>
+                    </Link>
                 </Grid>
                 <Link to={`/login`} style={{ textDecoration: 'none' }}>
                 <IconButton aria-label="delete">
@@ -106,11 +108,17 @@ function Home(props) {
                 style = {{minHeight: 600}}
             >
                 <Grid item xs={12} sm = {6} md = {5} lg = {5} >
+
                     <Problem
                         setQuery = {setQuery}
                         isReturned = {isReturned}
                     />
-                    <p style = {{color:'#C8C8C8', marginLeft: 70}}> Trending: #startups, #systemsthinking, #investing </p>
+                    {isReturned
+
+                        ? null
+                        : <p style={{color: '#C8C8C8', marginLeft: 70}}> Trending: #startups, #systemsthinking,
+                            #investing </p>
+                    }
 
                 </Grid>
                 <Grid spacing={0} item xs={12} sm = {6} md = {7} lg = {7}>
@@ -140,6 +148,19 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         color: theme.palette.text.secondary,
     },
+
+    cursor:{
+        color:"white"
+
+    },
+
+    typerWrapper:{
+        color:"white",
+        marginLeft: 65,
+        marginBottom: 20,
+
+    },
+
     box:{
         flexGrow: 1,
         padding: 0,
@@ -169,3 +190,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default Home;
+
+
+
+
+// {query ?
+//
+//     <Typewriter
+//         wrapperClassName={classes.typerWrapper}
+//         cursorClassNAme={classes.cursor}
+//         style={{color: 'white'}}
+//         options={{
+//             strings: ['Interesting. Looking through our database to find matching categories...', 'Double checking previous search data..', 'Cross reference done. Submitted to a human for final approval...'],
+//             autoStart: true,
+//             loop: false,
+//             delay: 40,
+//             wrapperClassName: classes.typerWrapper,
+//             deleteSpeed: 8,
+//
+//         }}
+//     />
+//
+//     :null
+// }

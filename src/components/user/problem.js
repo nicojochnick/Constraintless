@@ -16,6 +16,19 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardHeader from '@material-ui/core/CardHeader';
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+const stripe = require('stripe')('sk_test_51IJiWyJIe2lHAKvh4ckkFlQaTTx22dnVMUiTDO3MQ0NPpCSarFBDbcsJglWCOmvcuEgtKDjbVTT8Ym4jx9Btokl000HOQa7S1f');
+
+
+const product = stripe.products.create({
+    name: 'Gold Special',
+});
+
 
 
 const override = css`
@@ -23,6 +36,26 @@ const override = css`
   margin:  10;
   border-color: red;
 `;
+
+const toolbarConfig = {
+    // Optionally specify the groups to display (displayed in the order listed).
+    display: ['INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS', 'LINK_BUTTONS', 'BLOCK_TYPE_DROPDOWN', 'HISTORY_BUTTONS'],
+    INLINE_STYLE_BUTTONS: [
+        {label: 'Bold', style: 'BOLD', className: 'custom-css-class'},
+        {label: 'Italic', style: 'ITALIC'},
+        {label: 'Underline', style: 'UNDERLINE'}
+    ],
+    BLOCK_TYPE_DROPDOWN: [
+        {label: 'Normal', style: 'unstyled'},
+        {label: 'Heading Large', style: 'header-one'},
+        {label: 'Heading Medium', style: 'header-two'},
+        {label: 'Heading Small', style: 'header-three'}
+    ],
+    BLOCK_TYPE_BUTTONS: [
+        {label: 'UL', style: 'unordered-list-item'},
+        {label: 'OL', style: 'ordered-list-item'}
+    ]
+};
 
 function Problem(props) {
     const classes = useStyles();
@@ -84,7 +117,7 @@ function Problem(props) {
 
     useEffect(() => {
 
-        if (props.isReturned){setColor('#655BFF')}
+        if (props.isReturned){setColor('white')}
 
     }, []);
 
@@ -96,6 +129,7 @@ function Problem(props) {
                   container
                   style = {{backgroundColor: "black"}}
             >
+
                 <Box
                     className={classes.search2}
                     style = {{backgroundColor: 'black', padding: 10, margin: 10,}}
@@ -110,7 +144,6 @@ function Problem(props) {
                     <BiDisc
                         size={25}
                         style={{color: color, margin: 5}}/>
-
 
                     <TextField
                         placeholder="What can I help with?"
@@ -131,31 +164,32 @@ function Problem(props) {
 
                     <Box
                         className={classes.rteBox}
-                        style={{backgroundColor: 'white', padding: 0, margin: 10,}}
+                        style={{backgroundColor: 'black', padding: 0, margin: 10,}}
                         alignItems="flex-start"
                         justify='flex-start'
                         display="flex"
                         flexDirection="column"
-                        border = {3}
-                        borderRadius = {20}
-                        borderColor = { '#655BFF'}
+                        border = {2}
+                        borderRadius = {15}
+                        borderColor = { 'white'}
                     >
-                        <p style = {{color: '#4E4D5A', fontWeight: 800, fontSize: 15, margin: 10}}> White Board </p>
+                        <p style = {{color: 'white', fontWeight: 800, fontSize: 15, margin: 10}}> Exercise Board </p>
                         <Divider className={classes.divider}/>
                         <RichTextEditor
                             value={body}
                             className = {classes.rte}
+                            // toolBarConfig = {toolbarConfig}
                             onChange={onChange}
                         />
                         <Button
-                            style = {{margin: 0, backgroundColor:'white', borderRadius: 0}}
+                            style = {{margin: 0, backgroundColor:'black', borderRadius: 0}}
                             variant="contained"
                             fullWidth
                             onClick={()=>handleClickOpen()}
                             className={classes.button}
-                            startIcon={<BiArrowToBottom style = {{color:'#171717'}} />}
+                            startIcon={<BiArrowToBottom style = {{color:'white'}} />}
                         >
-                            <p style = {{color:'#171717',fontWeight: 800, margin: 6}}>
+                            <p style = {{color:'white',fontWeight: 800, margin: 3}}>
                             SAVE
                             </p>
                         </Button>
@@ -166,14 +200,62 @@ function Problem(props) {
                     :null
                 }
 
-                <Dialog maxWidth={'sm'} fullWidth={true} open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">Subscribe to Save </DialogTitle>
+                <Dialog
+                    PaperProps={{
+                        style: {
+                            backgroundColor: '#F0F0F0',
+                            borderRadius: 20,
+                            borderColor: 'white',
+                            border: 2
+                        },
+                    }}
+                    className={classes.subscribePopUp}
+                    maxWidth={'xs'}
+                    fullWidth={true}
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="form-dialog-title"
+                >
+
                     <DialogContent>
-                        <DialogContentText>
-                            Saving is a premium feature. Sign up to save your notes.
-                        </DialogContentText>
                         <Grid container direction='column' spacing={0}>
 
+                            <Box>
+                                <p style = {{fontSize: 20, fontWeight: 800}}> Subscribe to Save</p>
+                                <Divider/>
+                                <Box display = 'flex' flexDirection = 'row' justifyContent = 'flex-start' alignItems = 'center'>
+                                <p style = {{fontSize: 50, margin:0}}> $3 </p> <p style = {{fontSize: 18, marginTop: 36}}> /month </p>
+                                    <ul>
+                                        <li>Save Your Notes</li>
+                                        <li>Unlimited Searches</li>
+                                        <li>Access to Exclusive Models</li>
+                                        <li>Cancel Anytime</li>
+                                    </ul>
+                                </Box>
+
+                                <Divider/>
+
+                                <head>
+                                    <title>Subscription prices</title>
+                                    <script src="https://js.stripe.com/v3/"></script>
+                                </head>
+
+
+                                <body>
+                                <form id="payment-form">
+                                    <div id="card-element">
+                                    </div>
+                                    <div id="card-element-errors" role="alert"></div>
+                                    <button type="submit">Subscribe</button>
+                                </form>
+                            </body>
+
+
+
+
+
+
+                            </Box>
 
                         </Grid>
 
@@ -205,10 +287,18 @@ const useStyles = makeStyles((theme) => ({
         color: 'white',
     },
 
+    tool: {
+        color: 'white'
+
+    },
+
     rte:{
         minHeight: 300,
+        backgroundColor: 'black',
         overflow: 'hidden',
         fontFamily: "inherit",
+        fontColor: 'white',
+        color: 'white',
         // borderRadius: 20,
         // borderWidth: 2,
         // borderColor: '#655BFF',
@@ -238,6 +328,12 @@ const useStyles = makeStyles((theme) => ({
 
     },
 
+    subscribePopUp: {
+        color: 'black'
+
+
+    },
+
     divider: {
         // Theme Color, or use css color in quote
         background: 'white',
@@ -259,3 +355,25 @@ export default Problem;
 {/*    </Button>*/}
 {/*    : null*/}
 {/*}*/}
+
+
+
+{/*{props.isReturned*/}
+
+{/*? <Typewriter*/}
+{/*    wrapperClassName={classes.typerWrapper}*/}
+{/*    cursorClassNAme={classes.cursor}*/}
+{/*    style={{color: 'white'}}*/}
+{/*    options={{*/}
+{/*    strings: ['Hopefully this helps...'],*/}
+{/*    autoStart: true,*/}
+{/*    loop: false,*/}
+{/*    delay: 40,*/}
+{/*    wrapperClassName: classes.typerWrapper,*/}
+{/*    deleteSpeed: 8,*/}
+
+{/*}}*/}
+{/*    />*/}
+{/*    :null*/}
+
+

@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Grid from "@material-ui/core/Grid";
-import constraintless from "../assets/constraintless.png";
+import constraintless from "../../assets/constraintless.png";
 import {Link} from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import {BiDoorOpen,BiArrowToRight} from "react-icons/bi";
-import {db} from "../api/firebase";
+import {db} from "../../api/firebase";
 import { makeStyles, fade } from '@material-ui/core/styles';
 import Box from "@material-ui/core/Box";
 import firebase from 'firebase/app';
-import Query from "../components/admin/query"
+import Query from "../../components/admin/query"
 import TextField from "@material-ui/core/TextField/TextField";
 import { BiQuestionMark, BiPlus, BiSearch} from "react-icons/bi"
 import Button from '@material-ui/core/Button';
-import {storage} from "../api/firebase";
+import {storage} from "../../api/firebase";
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -181,7 +181,9 @@ export default function Admin(props) {
         <div>
             <Grid justify='space-between' alignItems={'space-between'} container direction='row'>
                 <Grid item >
-                    <img style = {{height: 60, margin: 10}} src={constraintless}/>
+                    <Link to="/">
+                    <img style = {{height: 50, margin: 10}} src={constraintless}/>
+                    </Link>
                 </Grid>
                 <Grid item>
                 <IconButton aria-label="delete">

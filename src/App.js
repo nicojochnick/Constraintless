@@ -5,7 +5,7 @@ import Home from "./views/home/home";
 import React, { Component } from "react";
 import home from "./views/home/home";
 import login from "./views/authentication/login"
-import Admin from "./views/admin"
+import Admin from "./views/admin/admin"
 import {BrowserRouter as Router, HashRouter, Switch, Route, Link, Redirect,useParams} from "react-router-dom";
 import {auth} from './api/firebase';
 
@@ -39,11 +39,7 @@ export default class App extends Component {
 
 
     render() {
-        return this.state.loading === true ? (
-            <div className="spinner-border text-success" role="status">
-                <span className="sr-only">Loading...</span>
-            </div>
-        ) : (
+        return (
             <div style={{backgroundColor: '#000000', minHeight: '100vh',}} >
                 <Router>
                     <Switch>
@@ -62,6 +58,7 @@ export default class App extends Component {
                         />
                     </Switch>
                 </Router>
+
             </div>
 
         );
