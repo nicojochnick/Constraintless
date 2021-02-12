@@ -60,8 +60,8 @@ function Solution(props) {
                             {/*<p style = {{color: "white",}}> Make better decisions with A.I.</p>*/}
                             <img
                                 src={'https://media.giphy.com/media/xTiTnHN9JLODvS1fr2/giphy.gif'}/>
-                            {/*{models.map((item) => <Model header = {item.header} body = {item.body} img = {item.img} />*/}
-                        )}
+                        {/*    {models.map((item) => <Model header = {item.header} body = {item.body} img = {item.img} />*/}
+                        {/*)}*/}
                         </div>
                     }
                 </div>

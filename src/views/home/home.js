@@ -1,19 +1,20 @@
 import React, {useEffect} from 'react';
-import Problem from "../../components/user/problem";
-import Solution from "../../components/user/solution";
+import Problem from "../../components/search/problem";
+import Solution from "../../components/search/solution";
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import constraintless from "../../assets/constraintless.png"
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
-import {BiDoorOpen} from "react-icons/bi";
+import {BiDoorOpen, BiUser} from "react-icons/bi";
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
 import {db} from "../../api/firebase";
 import {convertFromRaw, EditorState, RichUtils} from "draft-js";
 import Divider from '@material-ui/core/Divider';
 import Typewriter from 'typewriter-effect';
+import Feed from "../../components/feed/feed";
 
 
 function Home(props) {
@@ -96,41 +97,23 @@ function Home(props) {
                 </Grid>
                 <Link to={`/login`} style={{ textDecoration: 'none' }}>
                 <IconButton aria-label="delete">
-                    <BiDoorOpen style = {{color: "white", margin: 20}}/>
+                    <BiUser style = {{color: "white", margin: 20}}/>
                 </IconButton>
                 </Link>
             </Grid>
             <Grid
                 direction="row"
-                justify="flex-start"
+                justify="center"
                 alignItems='center'
                 container
-                style = {{minHeight: 600}}
+                // style = {{minHeight: 600}}
             >
-                <Grid item xs={12} sm = {6} md = {5} lg = {5} >
 
-                    <Problem
-                        setQuery = {setQuery}
-                        isReturned = {isReturned}
-                    />
-                    {isReturned
+                <Box display = {'flex'} justifyContent = 'center' alignItems = 'center' style = {{ backgroundColor:'black'}} className={classes.inner_box}>
 
-                        ? null
-                        : <p style={{color: '#C8C8C8', marginLeft: 70}}> Trending: #startups, #systemsthinking,
-                            #investing </p>
-                    }
+                <Feed/>
+                </Box>
 
-                </Grid>
-                <Grid spacing={0} item xs={12} sm = {6} md = {7} lg = {7}>
-
-                    <Box style = {{maxHeight: 700, backgroundColor:'black'}} className={classes.inner_box}>
-                    < Solution
-                        query = {query}
-                        parsedBody = {parsedBody}
-                        response = {response}
-                    />
-                        </Box>
-                </Grid>
             </Grid>
             </Grid>
         </div>
@@ -179,7 +162,7 @@ const useStyles = makeStyles((theme) => ({
     inner_box:{
         flexGrow: 1,
         padding: 0,
-        display: 'start',
+        // display: 'start',
         overflowY: 'scroll',
         overflowX: 'hidden',
         flexDirection: 'column',
@@ -213,3 +196,30 @@ export default Home;
 //
 //     :null
 // }
+
+
+
+{/*<Grid item xs={12} sm = {6} md = {5} lg = {5} >*/}
+
+{/*    <Problem*/}
+{/*        setQuery = {setQuery}*/}
+{/*        isReturned = {isReturned}*/}
+{/*    />*/}
+{/*    {isReturned*/}
+
+{/*        ? null*/}
+{/*        : <p style={{color: '#C8C8C8', marginLeft: 70}}> Trending: #startups, #systemsthinking,*/}
+{/*            #investing </p>*/}
+{/*    }*/}
+
+{/*</Grid>*/}
+{/*<Grid spacing={0} item xs={12} sm = {6} md = {7} lg = {7}>*/}
+
+{/*    <Box style = {{maxHeight: 700, backgroundColor:'black'}} className={classes.inner_box}>*/}
+{/*    < Solution*/}
+{/*query = {query}*/}
+{/*parsedBody = {parsedBody}*/}
+{/*response = {response}*/}
+{/*/>*/}
+{/*</Box>*/}
+{/*</Grid>*/}

@@ -10,7 +10,7 @@ import Box from "@material-ui/core/Box";
 import firebase from 'firebase/app';
 import Query from "../../components/admin/query"
 import TextField from "@material-ui/core/TextField/TextField";
-import { BiQuestionMark, BiPlus, BiSearch} from "react-icons/bi"
+import { BiQuestionMark,BiUser, BiPlus, BiSearch} from "react-icons/bi"
 import Button from '@material-ui/core/Button';
 import {storage} from "../../api/firebase";
 import Dialog from '@material-ui/core/Dialog';
@@ -191,7 +191,7 @@ export default function Admin(props) {
                 </IconButton>
 
                     <IconButton aria-label="delete">
-                        <BiDoorOpen onClick = {()=>handleLogout()} style = {{color: "white", margin: 20}}/>
+                        <BiUser onClick = {()=>handleLogout()} style = {{color: "white", margin: 20}}/>
                     </IconButton>
                 </Grid>
             </Grid>

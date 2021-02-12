@@ -22,13 +22,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
-const stripe = require('stripe')('sk_test_51IJiWyJIe2lHAKvh4ckkFlQaTTx22dnVMUiTDO3MQ0NPpCSarFBDbcsJglWCOmvcuEgtKDjbVTT8Ym4jx9Btokl000HOQa7S1f');
-
-
-const product = stripe.products.create({
-    name: 'Gold Special',
-});
-
+import Signup from '../signup'
 
 
 const override = css`
@@ -217,57 +211,7 @@ function Problem(props) {
                     aria-labelledby="form-dialog-title"
                 >
 
-                    <DialogContent>
-                        <Grid container direction='column' spacing={0}>
-
-                            <Box>
-                                <p style = {{fontSize: 20, fontWeight: 800}}> Subscribe to Save</p>
-                                <Divider/>
-                                <Box display = 'flex' flexDirection = 'row' justifyContent = 'flex-start' alignItems = 'center'>
-                                <p style = {{fontSize: 50, margin:0}}> $3 </p> <p style = {{fontSize: 18, marginTop: 36}}> /month </p>
-                                    <ul>
-                                        <li>Save Your Notes</li>
-                                        <li>Unlimited Searches</li>
-                                        <li>Access to Exclusive Models</li>
-                                        <li>Cancel Anytime</li>
-                                    </ul>
-                                </Box>
-
-                                <Divider/>
-
-                                <head>
-                                    <title>Subscription prices</title>
-                                    <script src="https://js.stripe.com/v3/"></script>
-                                </head>
-
-
-                                <body>
-                                <form id="payment-form">
-                                    <div id="card-element">
-                                    </div>
-                                    <div id="card-element-errors" role="alert"></div>
-                                    <button type="submit">Subscribe</button>
-                                </form>
-                            </body>
-
-
-
-
-
-
-                            </Box>
-
-                        </Grid>
-
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose} color="default">
-                            Cancel
-                        </Button>
-                        <Button onClick={handleClose} color="default">
-                            Subscribe
-                        </Button>
-                    </DialogActions>
+                    <Signup handleClose = {handleClose} />
                 </Dialog>
             </Grid>
         </div>

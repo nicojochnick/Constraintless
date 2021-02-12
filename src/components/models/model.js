@@ -12,7 +12,7 @@ function Model(props) {
         <div>
             <Box style = {{margin: 50, maxWidth: 650}}>
                 <p style={{color: 'white', fontSize: 45, fontWeight: 800}}> {props.header} </p>
-                <img style={{maxHeight: 250}} src={props.img}/>
+                <img style={{maxHeight: 275}} src={props.img}/>
                 <div style={{color: 'white', margin: 10, fontSize: 15}}>
                     <Editor editorState={ EditorState.createWithContent(convertFromRaw(JSON.parse(props.body))) } readOnly={true}/>
                 </div>
