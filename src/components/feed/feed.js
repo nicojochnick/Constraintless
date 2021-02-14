@@ -18,9 +18,7 @@ function Feed(props) {
                 });
                 setModels(models)
             });
-
     }, []);
-
 
     return (
         <div>

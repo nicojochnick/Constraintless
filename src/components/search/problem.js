@@ -12,6 +12,8 @@ import { css } from "@emotion/core";
 import RichTextEditor from "react-rte";
 import Divider from "@material-ui/core/Divider";
 import Dialog from '@material-ui/core/Dialog';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
@@ -124,33 +126,35 @@ function Problem(props) {
                   style = {{backgroundColor: "black"}}
             >
 
-                <Box
-                    className={classes.search2}
-                    style = {{backgroundColor: 'black', padding: 10, margin: 10,}}
-                    border = {2}
-                    borderColor = {color}
-                    borderRadius = {20}
-                    alignItems="flex-start"
-                    justify = 'flex-start'
-                    display="flex"
-                    flexDirection="row"
-                >
-                    <BiDisc
-                        size={25}
-                        style={{color: color, margin: 5}}/>
+                <p style = {{color:'white', fontWeight: 600, fontSize: 20}} > Help me... </p>
 
-                    <TextField
-                        placeholder="What can I help with?"
-                        // multiline
-                        onChange={(event)=>handleCreateQuery(event)}
-                        onKeyPress = {(e)=>sendResponse(e)}
-                        defaultValue= {label}
-                        fullWidth
-                        value = {label}
-                        InputProps= {{className: classes.textField, disableUnderline: true}}
-                        rowsMax={6}
-                    />
-                </Box>
+
+                <ButtonGroup
+                    orientation="vertical"
+                    aria-label="vertical contained primary button group"
+                    variant="contained"
+                    borderRadius = {20}
+                    style = {{borderRadius: 20, width: 300}}
+                >
+                    <Button className={classes.viewButton} >
+                        <p style = {{ fontSize: 18, margin: 4}} > Make a decision 🤷‍♂️️ </p>
+                    </Button>
+
+                    <Button className={classes.viewButton} >
+                        <p style = {{ fontSize: 18, margin: 4}} > Solve a problem 🙅‍♀️️ </p>
+                    </Button>
+                    <Button className={classes.viewButton} >
+                        <p style = {{ fontSize: 18, margin: 4}} > Get more done 🏃‍♂️‍ </p>
+                    </Button>
+                    <Button className={classes.viewButton} >
+                        <p style = {{ fontSize: 18, margin: 4}} > Be more effective 💁‍♀️ </p>
+                    </Button>
+
+                </ButtonGroup>
+
+
+
+
 
                 {props.isReturned
 
@@ -188,7 +192,6 @@ function Problem(props) {
                             </p>
                         </Button>
                     </Box>
-
 
 
                     :null
@@ -248,6 +251,14 @@ const useStyles = makeStyles((theme) => ({
         // borderColor: '#655BFF',
 
     },
+
+    viewButton:
+        {
+
+            radius: "3px",
+            color: "black",
+            textTransform: "none"
+        },
 
     rteBox: {
         overflow: 'hidden',
@@ -321,3 +332,33 @@ export default Problem;
 {/*    :null*/}
 
 
+
+
+
+{/*<Box*/}
+{/*    className={classes.search2}*/}
+{/*    style = {{backgroundColor: 'black', padding: 10, margin: 10,}}*/}
+{/*    border = {2}*/}
+{/*    borderColor = {color}*/}
+{/*    borderRadius = {20}*/}
+{/*    alignItems="flex-start"*/}
+{/*    justify = 'flex-start'*/}
+{/*    display="flex"*/}
+{/*    flexDirection="row"*/}
+{/*>*/}
+{/*    <BiDisc*/}
+{/*        size={25}*/}
+{/*        style={{color: color, margin: 5}}/>*/}
+
+{/*    <TextField*/}
+{/*        placeholder="What can I help with?"*/}
+{/*        // multiline*/}
+{/*        onChange={(event)=>handleCreateQuery(event)}*/}
+{/*        onKeyPress = {(e)=>sendResponse(e)}*/}
+{/*        defaultValue= {label}*/}
+{/*        fullWidth*/}
+{/*        value = {label}*/}
+{/*        InputProps= {{className: classes.textField, disableUnderline: true}}*/}
+{/*        rowsMax={6}*/}
+{/*    />*/}
+{/*</Box>*/}

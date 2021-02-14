@@ -109,10 +109,22 @@ function Home(props) {
                 // style = {{minHeight: 600}}
             >
 
-                <Box display = {'flex'} justifyContent = 'center' alignItems = 'center' style = {{ backgroundColor:'black'}} className={classes.inner_box}>
+                <Grid item xs={12} sm = {6} md = {5} lg = {5} >
 
-                <Feed/>
-                </Box>
+                    <Problem
+                        setQuery = {setQuery}
+                        isReturned = {isReturned}
+                    />
+
+                </Grid>
+                <Grid spacing={0} item xs={12} sm = {6} md = {7} lg = {7}>
+
+                    <Box style = {{maxHeight: 700, backgroundColor:'black'}} className={classes.inner_box}>
+                        <Feed/>
+                    </Box>
+                </Grid>
+
+
 
             </Grid>
             </Grid>
@@ -198,24 +210,6 @@ export default Home;
 // }
 
 
-
-{/*<Grid item xs={12} sm = {6} md = {5} lg = {5} >*/}
-
-{/*    <Problem*/}
-{/*        setQuery = {setQuery}*/}
-{/*        isReturned = {isReturned}*/}
-{/*    />*/}
-{/*    {isReturned*/}
-
-{/*        ? null*/}
-{/*        : <p style={{color: '#C8C8C8', marginLeft: 70}}> Trending: #startups, #systemsthinking,*/}
-{/*            #investing </p>*/}
-{/*    }*/}
-
-{/*</Grid>*/}
-{/*<Grid spacing={0} item xs={12} sm = {6} md = {7} lg = {7}>*/}
-
-{/*    <Box style = {{maxHeight: 700, backgroundColor:'black'}} className={classes.inner_box}>*/}
 {/*    < Solution*/}
 {/*query = {query}*/}
 {/*parsedBody = {parsedBody}*/}
@@ -223,3 +217,6 @@ export default Home;
 {/*/>*/}
 {/*</Box>*/}
 {/*</Grid>*/}
+
+
+
