@@ -10,13 +10,15 @@ function Model(props) {
 
     return (
         <div>
-            <Box style = {{margin: 50, maxWidth: 650}}>
-                <p style={{color: 'white', fontSize: 45, fontWeight: 800}}> {props.header} </p>
-                <img style={{maxHeight: 275}} src={props.img}/>
-                <div style={{color: 'white', margin: 10, fontSize: 15}}>
+            <Box display = 'flex' alignItems = 'center' flexDirection ='column' justify = 'center' borderRadius = {25} style = {{margin: 10, maxWidth: 550, backgroundColor: 'white', boxShadow: "0px 2px 10px #C9C9C9"}}>
+                <p style={{color: '#403E47', fontSize: 25, fontWeight: 800, padding: 0}}> {props.header} </p>
+                <Divider className={classes.divider}/>
+                <Box style = {{margin: 20}}>
+                <img style={{maxHeight: 275, margin: 5}} src={props.img}/>
+                <div style={{color: '#403E47', margin: 10, fontSize: 18, marginTop:20}}>
                     <Editor editorState={ EditorState.createWithContent(convertFromRaw(JSON.parse(props.body))) } readOnly={true}/>
                 </div>
-                <Divider className={classes.divider}/>
+                </Box>
             </Box>
 
         </div>
@@ -26,7 +28,7 @@ function Model(props) {
 const useStyles = makeStyles((theme) => ({
     divider: {
         // Theme Color, or use css color in quote
-        background: 'white',
+        background: '#403E47',
     },
 }));
 

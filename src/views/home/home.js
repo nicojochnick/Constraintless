@@ -97,7 +97,7 @@ function Home(props) {
                 </Grid>
                 <Link to={`/login`} style={{ textDecoration: 'none' }}>
                 <IconButton aria-label="delete">
-                    <BiUser style = {{color: "white", margin: 20}}/>
+                    <BiUser style = {{color: "black", margin: 20}}/>
                 </IconButton>
                 </Link>
             </Grid>
@@ -119,7 +119,7 @@ function Home(props) {
                 </Grid>
                 <Grid spacing={0} item xs={12} sm = {6} md = {7} lg = {7}>
 
-                    <Box style = {{maxHeight: 700, backgroundColor:'black'}} className={classes.inner_box}>
+                    <Box style = {{maxHeight: 700, backgroundColor:'#FBFBFB'}} className={classes.inner_box}>
                         <Feed/>
                     </Box>
                 </Grid>
@@ -135,7 +135,7 @@ function Home(props) {
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        backgroundColor:'black',
+        backgroundColor:'#FBFBFB',
         overflowX: 'hidden',
     },
     paper: {

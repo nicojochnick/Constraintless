@@ -123,18 +123,18 @@ function Problem(props) {
                   alignItems = 'center'
                   justify = {'center'}
                   container
-                  style = {{backgroundColor: "black"}}
             >
 
-                <p style = {{color:'white', fontWeight: 600, fontSize: 20}} > Help me... </p>
+                <p style = {{color:'black', fontWeight: 600, fontSize: 20}} > Help me... </p>
 
 
                 <ButtonGroup
                     orientation="vertical"
                     aria-label="vertical contained primary button group"
                     variant="contained"
+                    className = {classes.buttonGroup}
                     borderRadius = {20}
-                    style = {{borderRadius: 20, width: 300}}
+                    style = {{borderRadius: 20, width: 300,}}
                 >
                     <Button className={classes.viewButton} >
                         <p style = {{ fontSize: 18, margin: 4}} > Make a decision 🤷‍♂️️ </p>
@@ -162,7 +162,7 @@ function Problem(props) {
 
                     <Box
                         className={classes.rteBox}
-                        style={{backgroundColor: 'black', padding: 0, margin: 10,}}
+                        style={{backgroundColor: '#181719', padding: 0, margin: 10,}}
                         alignItems="flex-start"
                         justify='flex-start'
                         display="flex"
@@ -224,7 +224,6 @@ function Problem(props) {
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        backgroundColor: 'white',
     },
     box: {
         color: "white",
@@ -232,6 +231,11 @@ const useStyles = makeStyles((theme) => ({
     textField: {
         disableUnderline: true,
         color: 'white',
+    },
+    buttonGroup: {
+        backgroundColor: 'white',
+        color:'white'
+
     },
 
     tool: {
@@ -241,7 +245,7 @@ const useStyles = makeStyles((theme) => ({
 
     rte:{
         minHeight: 300,
-        backgroundColor: 'black',
+        backgroundColor: '#181719',
         overflow: 'hidden',
         fontFamily: "inherit",
         fontColor: 'white',
@@ -256,7 +260,8 @@ const useStyles = makeStyles((theme) => ({
         {
 
             radius: "3px",
-            color: "black",
+            backgroundColor: '#826FFF',
+            color: "white",
             textTransform: "none"
         },
 
