@@ -40,7 +40,7 @@ export default class App extends Component {
 
     render() {
         return (
-            <div style={{backgroundColor: '#000000', minHeight: '100vh',}} >
+            <div >
                 <Router>
                     <Switch>
                         <Route exact path="/" component={home}/>

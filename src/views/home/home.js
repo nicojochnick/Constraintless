@@ -5,9 +5,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import constraintless from "../../assets/constraintless.png"
+import blacklogo from "../../assets/blacklogo.png"
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import {BiDoorOpen, BiUser} from "react-icons/bi";
+import AppBar from '@material-ui/core/AppBar';
+
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
 import {db} from "../../api/firebase";
@@ -88,38 +91,36 @@ function Home(props) {
     return (
         <div className={classes.root}>
             <Grid container>
-            <Grid justify='space-between' alignItems='space-between' container direction='row' >
+                <AppBar position="fixed">
+
+                <Grid style = {{ backgroundColor: 'white', boxShadow: "0px 2px 10px #C9C9C9"}} justify='space-between' alignItems='space-between' container direction='row' >
                 <Grid item >
                     <Link to="/">
-
-                        <img style = {{height: 50, margin: 10}} src={constraintless}/>
+                        <img style = {{height: 50, margin: 10,}} src={blacklogo}/>
                     </Link>
                 </Grid>
                 <Link to={`/login`} style={{ textDecoration: 'none' }}>
                 <IconButton aria-label="delete">
-                    <BiUser style = {{color: "black", margin: 20}}/>
+                    <BiUser style = {{color: "black", margin: 10}}/>
                 </IconButton>
                 </Link>
             </Grid>
+                </AppBar>
             <Grid
                 direction="row"
-                justify="center"
+                justify="flex-start"
                 alignItems='center'
                 container
-                // style = {{minHeight: 600}}
+                style = {{marginTop: 50}}
             >
-
-                <Grid item xs={12} sm = {6} md = {5} lg = {5} >
-
+                <Grid  item xs={12} sm = {12} md = {5} lg = {5} >
                     <Problem
                         setQuery = {setQuery}
                         isReturned = {isReturned}
                     />
-
                 </Grid>
-                <Grid spacing={0} item xs={12} sm = {6} md = {7} lg = {7}>
-
-                    <Box style = {{maxHeight: 700, backgroundColor:'#FBFBFB'}} className={classes.inner_box}>
+                <Grid item flexDirection="row" display = 'flex' xs={12} sm = {12} md = {7} lg = {7}>
+                    <Box  style = {{height: '100vh', paddingTop: 40}} className={classes.inner_box}>
                         <Feed/>
                     </Box>
                 </Grid>
@@ -159,11 +160,11 @@ const useStyles = makeStyles((theme) => ({
     box:{
         flexGrow: 1,
         padding: 0,
-        display: 'start',
+        // display: 'start',
         overflow: 'auto',
         flexDirection: 'column',
-        position: 'relative',
-        // overflowY: 'hidden',
+        // position: 'relative',
+        overflowY: 'hidden',
         overflowX: 'hidden',
         // margin: 10,
         // marginBottom: 20,
@@ -173,12 +174,10 @@ const useStyles = makeStyles((theme) => ({
 
     inner_box:{
         flexGrow: 1,
-        padding: 0,
-        // display: 'start',
         overflowY: 'scroll',
         overflowX: 'hidden',
         flexDirection: 'column',
-        backgroundColor: 'white',
+        // backgroundColor: 'white',
         marginRight: -15
     },
 

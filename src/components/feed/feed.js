@@ -1,11 +1,13 @@
 import React, {useEffect} from 'react';
 import {db} from "../../api/firebase";
 import Model from "../models/model"
+import {makeStyles} from "@material-ui/core";
 
 
 
 function Feed(props) {
 
+    const classes = useStyles();
     const [models, setModels] = React.useState([]);
 
     useEffect(() => {
@@ -21,7 +23,7 @@ function Feed(props) {
     }, []);
 
     return (
-        <div>
+        <div className={classes.root}>
             {
                 models.map((item) => <Model header = {item.header} body = {item.body} img = {item.img} />
 
@@ -31,5 +33,19 @@ function Feed(props) {
         </div>
     );
 }
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+    box: {
+        color: "white"
+    },
+    textField: {
+        disableUnderline: true,
+        color: 'white',
+
+    }
+}));
 
 export default Feed;

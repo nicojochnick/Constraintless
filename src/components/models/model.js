@@ -10,12 +10,12 @@ function Model(props) {
 
     return (
         <div>
-            <Box display = 'flex' alignItems = 'center' flexDirection ='column' justify = 'center' borderRadius = {25} style = {{margin: 10, maxWidth: 550, backgroundColor: 'white', boxShadow: "0px 2px 10px #C9C9C9"}}>
+            <Box display = 'flex' alignItems = 'center' flexDirection ='column' justify = 'center' borderRadius = {20} style = {{margin: 40, padding: 25, maxWidth: 500, backgroundColor: 'white', boxShadow: "0px 2px 10px #C9C9C9"}}>
                 <p style={{color: '#403E47', fontSize: 25, fontWeight: 800, padding: 0}}> {props.header} </p>
                 <Divider className={classes.divider}/>
                 <Box style = {{margin: 20}}>
                 <img style={{maxHeight: 275, margin: 5}} src={props.img}/>
-                <div style={{color: '#403E47', margin: 10, fontSize: 18, marginTop:20}}>
+                <div style={{color: '#403E47',fontSize: 18, marginTop:10, margin: 45}}>
                     <Editor editorState={ EditorState.createWithContent(convertFromRaw(JSON.parse(props.body))) } readOnly={true}/>
                 </div>
                 </Box>
