@@ -125,44 +125,12 @@ function Problem(props) {
                   container
             >
 
-                <p style = {{color:'black', fontWeight: 600, fontSize: 20}} > Help me... </p>
-
-
-                <ButtonGroup
-                    orientation="vertical"
-                    aria-label="vertical contained primary button group"
-                    variant="contained"
-                    className = {classes.buttonGroup}
-                    borderRadius = {20}
-                    style = {{borderRadius: 20, width: 300,}}
-                >
-                    <Button className={classes.viewButton} >
-                        <p style = {{ fontSize: 18, margin: 4}} > Make a decision 🤷‍♂️️ </p>
-                    </Button>
-
-                    <Button className={classes.viewButton} >
-                        <p style = {{ fontSize: 18, margin: 4}} > Solve a problem 🙅‍♀️️ </p>
-                    </Button>
-                    <Button className={classes.viewButton} >
-                        <p style = {{ fontSize: 18, margin: 4}} > Get more done 🏃‍♂️‍ </p>
-                    </Button>
-                    <Button className={classes.viewButton} >
-                        <p style = {{ fontSize: 18, margin: 4}} > Be more effective 💁‍♀️ </p>
-                    </Button>
-
-                </ButtonGroup>
-
-
-
-
-
                 {props.isReturned
 
                     ?
-
                     <Box
                         className={classes.rteBox}
-                        style={{backgroundColor: '#181719', padding: 0, margin: 10,}}
+                        style={{ padding: 0, margin: 20,boxShadow: "0px 2px 10px #C9C9C9"}}
                         alignItems="flex-start"
                         justify='flex-start'
                         display="flex"
@@ -171,7 +139,7 @@ function Problem(props) {
                         borderRadius = {15}
                         borderColor = { 'white'}
                     >
-                        <p style = {{color: 'white', fontWeight: 800, fontSize: 15, margin: 10}}> Exercise Board </p>
+                        <p style = {{color: '#3B3B3C', fontWeight: 800, fontSize: 15, margin: 10,}}> Exercise Board </p>
                         <Divider className={classes.divider}/>
                         <RichTextEditor
                             value={body}
@@ -180,22 +148,59 @@ function Problem(props) {
                             onChange={onChange}
                         />
                         <Button
-                            style = {{margin: 0, backgroundColor:'black', borderRadius: 0}}
+                            style = {{margin: 0, backgroundColor:'white', borderRadius: 0}}
                             variant="contained"
                             fullWidth
                             onClick={()=>handleClickOpen()}
                             className={classes.button}
-                            startIcon={<BiArrowToBottom style = {{color:'white'}} />}
+                            startIcon={<BiArrowToBottom style = {{color:'#3B3B3C'}} />}
                         >
-                            <p style = {{color:'white',fontWeight: 800, margin: 3}}>
-                            SAVE
+                            <p style = {{color:'#3B3B3C',fontWeight: 800, margin: 3}}>
+                                SAVE
                             </p>
                         </Button>
                     </Box>
 
+                    :
+                    <div>
 
-                    :null
+
+                        <p style = {{color:'black', fontWeight: 600, fontSize: 20}} > Help me... </p>
+
+                        <ButtonGroup
+                            orientation="vertical"
+                            aria-label="vertical contained primary button group"
+                            variant="contained"
+                            className = {classes.buttonGroup}
+                            borderRadius = {20}
+                            style = {{borderRadius: 20, width: 300,}}
+                        >
+                            <Button className={classes.viewButton} >
+                                <p style = {{ fontSize: 18, margin: 4}} > Make a decision 🤷‍♂️️ </p>
+                            </Button>
+
+                            <Button className={classes.viewButton} >
+                                <p style = {{ fontSize: 18, margin: 4}} > Solve a problem 🙅‍♀️️ </p>
+                            </Button>
+                            <Button className={classes.viewButton} >
+                                <p style = {{ fontSize: 18, margin: 4}} > Get more done 🏃‍♂️‍ </p>
+                            </Button>
+                            <Button className={classes.viewButton} >
+                                <p style = {{ fontSize: 18, margin: 4}} > Be more effective 💁‍♀️ </p>
+                            </Button>
+
+                        </ButtonGroup>
+
+                    </div>
+
+
+
+
                 }
+
+
+
+
 
                 <Dialog
                     PaperProps={{
@@ -245,7 +250,6 @@ const useStyles = makeStyles((theme) => ({
 
     rte:{
         minHeight: 300,
-        backgroundColor: '#181719',
         overflow: 'hidden',
         fontFamily: "inherit",
         fontColor: 'white',

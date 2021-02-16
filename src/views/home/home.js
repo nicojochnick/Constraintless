@@ -113,14 +113,14 @@ function Home(props) {
                 container
                 style = {{marginTop: 50}}
             >
-                <Grid  item xs={12} sm = {12} md = {5} lg = {5} >
+                <Grid  item xs={12} sm = {12} md = {5} lg = {6} >
                     <Problem
                         setQuery = {setQuery}
                         isReturned = {isReturned}
                     />
                 </Grid>
-                <Grid item flexDirection="row" display = 'flex' xs={12} sm = {12} md = {7} lg = {7}>
-                    <Box  style = {{height: '100vh', paddingTop: 40}} className={classes.inner_box}>
+                <Grid item flexDirection="row" display = 'flex' xs={12} sm = {12} md = {7} lg = {6}>
+                    <Box  style = {{height: '90vh', paddingTop: 40}} className={classes.inner_box}>
                         <Feed/>
                     </Box>
                 </Grid>
