@@ -111,7 +111,7 @@ function Home(props) {
                 justify="flex-start"
                 alignItems='center'
                 container
-                style = {{marginTop: 50}}
+                style = {{marginTop: 40}}
             >
                 <Grid  item xs={12} sm = {12} md = {5} lg = {6} >
                     <Problem
