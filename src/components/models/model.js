@@ -10,8 +10,8 @@ function Model(props) {
 
     return (
         <div>
-            <Box display = 'flex' alignItems = 'center' flexDirection ='column' justify = 'center' borderRadius = {15} style = {{margin: 50, overflow:'hidden', backgroundColor: '#826FFF', boxShadow: "0px 2px 10px #C9C9C9"}}>
-                <p style={{color: 'white', fontSize: 20, fontWeight: 800, margin: 15, padding: 0}}> {props.header} </p>
+            <Box display = 'flex' alignItems = 'center' flexDirection ='column' justify = 'center' borderRadius = {15} style = {{margin: 50, overflow:'hidden', backgroundColor: '#7860FF', boxShadow: "0px 0px 10px #DAD8E5"}}>
+                <p style={{color: 'white', fontSize: 20, fontWeight: 600, margin: 15, padding: 0}}> {props.header} </p>
                 <Box style = {{ padding: 0,backgroundColor:'white'}}>
                 {/*<Divider className={classes.divider}/>*/}
                 <Box style = {{margin: 20}}>

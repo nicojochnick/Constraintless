@@ -242,7 +242,7 @@ function Problem(props) {
 
                     <Box
                         className={classes.rteBox}
-                        style={{ padding: 0, margin: 20,boxShadow: "0px 2px 10px #C9C9C9"}}
+                        style={{ padding: 0, margin: 20, boxShadow: "0px 0px 10px #DAD8E5"}}
                         alignItems="flex-start"
                         justify='flex-start'
                         display="flex"
